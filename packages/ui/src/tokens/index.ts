@@ -1,8 +1,17 @@
 import { primitives } from "./primitives.js";
 import { semantic, type SemanticThemeTokens } from "./semantic.js";
 import { components } from "./components.js";
+import { ensureUimeStyles, UIME_TOKENS_CSS } from "./inject-styles.js";
 
-export { primitives, semantic, components };
+ensureUimeStyles();
+
+export {
+  primitives,
+  semantic,
+  components,
+  ensureUimeStyles,
+  UIME_TOKENS_CSS,
+};
 export type { SemanticThemeTokens };
 
 export const tokens = {
