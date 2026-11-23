@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { ensureUimeStyles } from "./inject-styles.js";
 import { primitives } from "./primitives.js";
 import styles from "./TokenExplorer.module.css";
+
+ensureUimeStyles();
 
 export interface TokenExplorerProps {
   section?: "all" | "surfaces" | "colors" | "scales";
@@ -12,21 +15,21 @@ const SURFACE_LAYERS = [
     title: "Glass Subtle",
     cssVar: "--uime-surface-glass-subtle",
     description:
-      "Low-elevation translucent surface for quiet containers, inputs, and secondary cards.",
+      "Soft translucent layer for quiet containers, inputs, and secondary cards.",
   },
   {
     id: "elevated",
     title: "Glass Elevated",
     cssVar: "--uime-surface-glass-elevated",
     description:
-      "Primary interactive card surface with 1px inner top specular highlight and medium frost.",
+      "Main card surface with a 1px top specular highlight and medium frost.",
   },
   {
     id: "overlay",
     title: "Glass Overlay",
     cssVar: "--uime-surface-glass-overlay",
     description:
-      "High-elevation floating surface for modals, drawers, command palettes, and popovers.",
+      "Floating glass layer for modals, drawers, command menus, and popovers.",
   },
 ] as const;
 
@@ -42,7 +45,7 @@ const SEMANTIC_SWATCHES = [
   { label: "Text Muted", cssVar: "--uime-text-muted" },
   { label: "Border Subtle", cssVar: "--uime-border-subtle" },
   { label: "Border Strong", cssVar: "--uime-border-strong" },
-  { label: "Specular Top Highlight", cssVar: "--uime-border-highlight-top" },
+  { label: "Top Highlight", cssVar: "--uime-border-highlight-top" },
 ] as const;
 
 export function TokenExplorer({ section = "all" }: TokenExplorerProps) {
@@ -63,13 +66,14 @@ export function TokenExplorer({ section = "all" }: TokenExplorerProps) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <span className={styles.eyebrow}>uime Design System • 3-Tier Tokens</span>
-        <h1 className={styles.title}>Atmospheric &amp; Translucent Foundations</h1>
+        <span className={styles.eyebrow}>uime • tokens</span>
+        <h1 className={styles.title}>Glass, Glow &amp; Motion</h1>
         <p className={styles.subtitle}>
-          All tokens are compiled into zero-runtime CSS Custom Properties inside{" "}
-          <code>uime/styles.css</code>. Switch between <strong>Atmospheric Dark</strong>,{" "}
-          <strong>Atmospheric Light</strong>, and <strong>Side-by-Side Split</strong> in
-          the Storybook toolbar above to inspect live theme adaptation.
+          A personal UI playground built around frosted glass surfaces, soft top
+          highlights, and snappy spring transitions. Switch between{" "}
+          <strong>Dark</strong>, <strong>Light</strong>, and{" "}
+          <strong>Side-by-Side Split</strong> in the toolbar above to preview
+          both themes.
         </p>
       </header>
 
@@ -77,10 +81,10 @@ export function TokenExplorer({ section = "all" }: TokenExplorerProps) {
         <section className={styles.section} aria-label="Translucent Glass Surfaces">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              Tier 2 — Translucent Glass Surfaces &amp; Specular Borders
+              Frosted Glass Surfaces
             </h2>
             <span className={styles.sectionMeta}>
-              backdrop-filter + inset 1px top highlight
+              Click any token badge to copy
             </span>
           </div>
 
@@ -116,9 +120,9 @@ export function TokenExplorer({ section = "all" }: TokenExplorerProps) {
         <section className={styles.section} aria-label="Semantic Theme Tokens">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              Tier 2 — Semantic Accents, Text &amp; Hairline Borders
+              Colors, Text &amp; Borders
             </h2>
-            <span className={styles.sectionMeta}>Auto-adapts to data-theme</span>
+            <span className={styles.sectionMeta}>Adapts to dark &amp; light mode</span>
           </div>
 
           <div className={styles.swatchGrid}>
@@ -142,7 +146,7 @@ export function TokenExplorer({ section = "all" }: TokenExplorerProps) {
         <section className={styles.section} aria-label="Geometry and Motion Physics">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              Tier 1 &amp; Tier 3 — Squircle Geometry &amp; Spring Motion
+              Radii &amp; Spring Feel
             </h2>
             <span className={styles.sectionMeta}>
               cubic-bezier(0.16, 1, 0.3, 1)

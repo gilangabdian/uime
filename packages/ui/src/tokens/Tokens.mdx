@@ -3,67 +3,46 @@ import * as TokensStories from "./Tokens.stories";
 
 <Meta of={TokensStories} />
 
-# 3-Tier Design Tokens (`uime`)
+# Design Tokens (`uime`)
 
-`uime` is powered by a **zero-runtime 3-Tier Design Token Engine** located in `packages/ui/src/tokens/`.
-When you build `uime`, our token compiler (`packages/ui/scripts/build-css.ts`) generates all CSS Custom Properties directly into `uime/styles.css`.
+A simple, personal token setup for `uime`—built just for fun around **frosted glass surfaces**, **soft 1px top highlights**, and **fluid spring motion**.
 
 ---
 
-## 1. Interactive Token Playground
+## 1. Playground
 
-Use the controls below or switch the **Atmospheric Theme** in the top Storybook toolbar (**Dark**, **Light**, or **Side-by-Side Split**) to see how translucent glass surfaces and specular borders adapt automatically.
+Switch between **Atmospheric Dark**, **Atmospheric Light**, and **Side-by-Side Split** in the top toolbar, or click any token badge to copy its CSS variable.
 
 <Canvas of={TokensStories.AllTokens} />
 <Controls of={TokensStories.AllTokens} />
 
 ---
 
-## 2. How to Use in Your App
+## 2. How to Use
 
-You only need **one** CSS import at the root of your application—all 3 tiers of tokens and component styles are embedded inside `uime/styles.css`:
+You don't need any complex setup. Whenever you import a component from `uime`, its CSS variables are injected automatically:
 
 ```tsx
-// main.tsx or app/layout.tsx
-import "uime/styles.css";
-import { cssVar, tokens } from "uime";
+import { Button } from "uime";
 ```
 
-### Switching Themes (`dark` vs `light`)
-- **Dark Mode (Default):** Applied automatically on `:root` or when `data-theme="dark"` is set on `<html>` or any container.
-- **Light Mode:** Set `data-theme="light"` on `<html>` (or any wrapper `<div>` to scope a light region inside a dark page!).
+*(Optional)* If you want to load the stylesheet statically in your root layout or copy a component like `shadcn/ui`, you can also import `"uime/styles.css"`.
+
+### Switching Dark & Light Mode
+- **Dark Mode (Default):** Active by default on `:root` or `data-theme="dark"`.
+- **Light Mode:** Add `data-theme="light"` to `<html>` or any wrapper `<div>`.
 
 ---
 
-## 3. Why Big Tech Uses a 3-Tier Token Architecture
+## 3. The Frosted Glass Recipe
 
-In production design systems (like those at GoTo, Traveloka, and Linear), components **never** hardcode raw hex codes (`#6366f1`) or magic pixel values. Instead, every visual property flows through 3 layers:
-
-| Tier | Source File | Example CSS Variable | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Tier 1: Primitives** | `src/tokens/primitives.ts` | `--uime-color-indigo-500`, `--uime-alpha-white-06` | Raw color palettes, alpha steps, blur radii, spacing, and cubic-bezier curves. Never used directly in components. |
-| **Tier 2: Semantic** | `src/tokens/semantic.ts` | `--uime-surface-glass-elevated`, `--uime-border-highlight-top` | Theme-aware intent tokens that switch values between `:root, [data-theme="dark"]` and `[data-theme="light"]`. |
-| **Tier 3: Component** | `src/tokens/components.ts` | `--uime-button-radius`, `--uime-modal-backdrop-blur` | Component-scoped contracts referencing Tier 2 tokens so consumers can override a single component without breaking global tokens. |
-
----
-
-## 4. Under the Hood: How We Built the "Atmospheric Glass & Specular Hairline"
-
-Instead of flat monochrome boxes, `uime` achieves its Raycast/Apple-inspired depth using **three coordinated CSS variables** inside our `.module.css` files:
+Every glass surface in `uime` uses three simple CSS variables together:
 
 ```css
-.glassCard {
-  /* 1. Translucent surface alpha layer */
+.card {
   background: var(--uime-surface-glass-elevated);
-
-  /* 2. Frosted backdrop blur */
   backdrop-filter: blur(var(--uime-blur-lg));
-  -webkit-backdrop-filter: blur(var(--uime-blur-lg));
-
-  /* 3. Outer subtle border + 1px inner top-edge specular light reflection */
   border: 1px solid var(--uime-border-subtle);
   box-shadow: var(--uime-shadow-glass);
 }
 ```
-
-Where `--uime-shadow-glass` combines ambient drop elevation with an `inset 0 1px 0 0 var(--uime-border-highlight-top)` top highlight—simulating overhead light catching the top rim of frosted glass.
