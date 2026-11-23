@@ -35,8 +35,11 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Run ESLint (including jsx-a11y)
+      - name: Run oxlint (including jsx-a11y)
         run: pnpm lint
+
+      - name: Check formatting (oxfmt)
+        run: pnpm format:check
 
       - name: Run TypeScript typecheck
         run: pnpm typecheck
