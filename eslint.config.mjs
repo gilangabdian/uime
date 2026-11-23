@@ -3,7 +3,14 @@ import tseslint from "typescript-eslint";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default tseslint.config(
-  { ignores: ["**/dist/**", "**/node_modules/**", "**/.turbo/**"] },
+  {
+    ignores: [
+      "**/dist/**",
+      "**/storybook-static/**",
+      "**/node_modules/**",
+      "**/.turbo/**",
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   jsxA11y.flatConfigs.recommended,

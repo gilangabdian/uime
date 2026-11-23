@@ -1,0 +1,255 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uime-space-8);
+  color: var(--uime-text-primary);
+  font-family: var(--uime-font-family-sans);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uime-space-2);
+}
+
+.eyebrow {
+  font-size: var(--uime-font-size-xs);
+  font-weight: var(--uime-font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--uime-accent-primary);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--uime-font-size-2xl);
+  font-weight: var(--uime-font-weight-bold);
+  line-height: var(--uime-font-leading-tight);
+  color: var(--uime-text-primary);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--uime-font-size-md);
+  line-height: var(--uime-font-leading-relaxed);
+  color: var(--uime-text-secondary);
+  max-width: 68ch;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uime-space-4);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--uime-border-subtle);
+  padding-bottom: var(--uime-space-2);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--uime-font-size-lg);
+  font-weight: var(--uime-font-weight-semibold);
+}
+
+.sectionMeta {
+  font-family: var(--uime-font-family-mono);
+  font-size: var(--uime-font-size-xs);
+  color: var(--uime-text-muted);
+}
+
+.glassStage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--uime-radius-xl);
+  border: 1px solid var(--uime-border-subtle);
+  padding: var(--uime-space-8);
+  background:
+    radial-gradient(circle at 18% 22%, var(--uime-accent-glow) 0%, transparent 48%),
+    radial-gradient(circle at 82% 78%, rgba(16, 185, 129, 0.22) 0%, transparent 50%),
+    var(--uime-surface-canvas);
+}
+
+.glassGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--uime-space-4);
+}
+
+.glassCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uime-space-3);
+  padding: var(--uime-space-5);
+  border-radius: var(--uime-radius-lg);
+  border: 1px solid var(--uime-border-subtle);
+  box-shadow: var(--uime-shadow-glass);
+  backdrop-filter: blur(var(--uime-blur-lg));
+  -webkit-backdrop-filter: blur(var(--uime-blur-lg));
+  transition:
+    transform var(--uime-motion-duration-normal) var(--uime-motion-ease-spring),
+    border-color var(--uime-motion-duration-fast) ease;
+}
+
+.glassCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--uime-border-strong);
+}
+
+.glassCard[data-surface="subtle"] {
+  background: var(--uime-surface-glass-subtle);
+}
+
+.glassCard[data-surface="elevated"] {
+  background: var(--uime-surface-glass-elevated);
+}
+
+.glassCard[data-surface="overlay"] {
+  background: var(--uime-surface-glass-overlay);
+  border-color: var(--uime-border-strong);
+  box-shadow: var(--uime-shadow-elevated);
+}
+
+.cardTitle {
+  font-size: var(--uime-font-size-md);
+  font-weight: var(--uime-font-weight-semibold);
+  color: var(--uime-text-primary);
+}
+
+.cardDesc {
+  font-size: var(--uime-font-size-sm);
+  color: var(--uime-text-secondary);
+  line-height: var(--uime-font-leading-normal);
+}
+
+.tokenBadge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uime-space-2);
+  padding: var(--uime-space-1) var(--uime-space-2);
+  border-radius: var(--uime-radius-xs);
+  border: 1px solid var(--uime-border-subtle);
+  background: var(--uime-surface-interactive-hover);
+  color: var(--uime-text-primary);
+  font-family: var(--uime-font-family-mono);
+  font-size: var(--uime-font-size-xs);
+  cursor: pointer;
+  transition:
+    background var(--uime-motion-duration-fast) ease,
+    transform var(--uime-motion-duration-fast) var(--uime-motion-ease-spring);
+}
+
+.tokenBadge:hover {
+  background: var(--uime-surface-interactive-active);
+}
+
+.tokenBadge:active {
+  transform: scale(0.97);
+}
+
+.tokenBadge:focus-visible {
+  outline: none;
+  box-shadow: var(--uime-shadow-focus-ring);
+}
+
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--uime-space-3);
+}
+
+.swatchCard {
+  display: flex;
+  align-items: center;
+  gap: var(--uime-space-3);
+  padding: var(--uime-space-3);
+  border-radius: var(--uime-radius-md);
+  border: 1px solid var(--uime-border-subtle);
+  background: var(--uime-surface-glass-subtle);
+  box-shadow: var(--uime-shadow-specular);
+}
+
+.swatchPreview {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--uime-radius-sm);
+  border: 1px solid var(--uime-border-strong);
+  flex-shrink: 0;
+}
+
+.swatchInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.swatchLabel {
+  font-size: var(--uime-font-size-sm);
+  font-weight: var(--uime-font-weight-medium);
+  color: var(--uime-text-primary);
+}
+
+.swatchVar {
+  font-family: var(--uime-font-family-mono);
+  font-size: var(--uime-font-size-xs);
+  color: var(--uime-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scaleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uime-space-4);
+}
+
+.radiusBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uime-space-1);
+  width: 7rem;
+  height: 5.5rem;
+  background: var(--uime-surface-glass-elevated);
+  border: 1px solid var(--uime-border-strong);
+  box-shadow: var(--uime-shadow-specular);
+}
+
+.motionButton {
+  padding: var(--uime-space-3) var(--uime-space-5);
+  border-radius: var(--uime-button-radius);
+  border: 1px solid var(--uime-border-strong);
+  background: var(--uime-accent-primary);
+  color: var(--uime-text-on-accent);
+  font-family: var(--uime-font-family-sans);
+  font-size: var(--uime-font-size-sm);
+  font-weight: var(--uime-button-font-weight);
+  box-shadow: var(--uime-shadow-glass);
+  cursor: pointer;
+  transition:
+    transform var(--uime-button-transition-duration) var(--uime-button-transition-ease),
+    background var(--uime-button-transition-duration) ease,
+    box-shadow var(--uime-button-transition-duration) ease;
+}
+
+.motionButton:hover {
+  background: var(--uime-accent-primary-hover);
+  transform: translateY(-1px);
+}
+
+.motionButton:active {
+  transform: scale(0.97);
+}
+
+.motionButton:focus-visible {
+  outline: none;
+  box-shadow: var(--uime-shadow-focus-ring);
+}
