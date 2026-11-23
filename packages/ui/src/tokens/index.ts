@@ -5,13 +5,7 @@ import { ensureUimeStyles, UIME_TOKENS_CSS } from "./inject-styles.js";
 
 ensureUimeStyles();
 
-export {
-  primitives,
-  semantic,
-  components,
-  ensureUimeStyles,
-  UIME_TOKENS_CSS,
-};
+export { primitives, semantic, components, ensureUimeStyles, UIME_TOKENS_CSS };
 export type { SemanticThemeTokens };
 
 export const tokens = {

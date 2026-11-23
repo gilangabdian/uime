@@ -40,8 +40,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const selectedTheme =
-        (context.globals["theme"] as string | undefined) ?? "dark";
+      const selectedTheme = (context.globals["theme"] as string | undefined) ?? "dark";
 
       if (selectedTheme === "side-by-side") {
         return (

@@ -3,44 +3,48 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "scripts": {
     "storybook": "pnpm --filter @uime/storybook dev",
     "build-storybook": "pnpm --filter @uime/storybook build",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
     "test": "turbo run test",
     "prepare": "husky",
     "changeset": "changeset",
     "version-packages": "changeset version"
   },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@types/node": "^26.6.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.1",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "tsx": "^4.23.15",
+    "turbo": "^2.11.13",
+    "typescript": "~6.0.0"
+  },
   "lint-staged": {
-    "*.{ts,tsx,mjs}": [
-      "eslint --fix"
+    "*.{ts,tsx,mjs,js}": [
+      "oxlint --fix",
+      "oxfmt --write"
+    ],
+    "*.{css,json,md,mdx,yaml,yml}": [
+      "oxfmt --write"
     ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
       "version": "^11.18.0",
       "onFail": "download"
     }
-  },
-  "type": "module",
-  "devDependencies": {
-    "@changesets/cli": "^3.0.3",
-    "@eslint/js": "^10.0.1",
-    "@types/node": "^26.6.6",
-    "eslint": "^10.15.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.1",
-    "tsx": "^4.23.15",
-    "turbo": "^2.11.13",
-    "typescript": "~6.0.0",
-    "typescript-eslint": "^8.73.0"
   }
 }

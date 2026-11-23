@@ -7,7 +7,7 @@
     "dev": "storybook dev -p 6006 --no-open",
     "build": "storybook build -o dist",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
+    "lint": "oxlint -c ../../.oxlintrc.json .",
     "test": "echo \"Storybook stories verified\""
   },
   "dependencies": {

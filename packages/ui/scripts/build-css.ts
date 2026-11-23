@@ -5,9 +5,9 @@ import { primitives } from "../src/tokens/primitives.js";
 import { semantic } from "../src/tokens/semantic.js";
 import { components } from "../src/tokens/components.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const distDir = resolve(__dirname, "../dist");
-const injectFile = resolve(__dirname, "../src/tokens/inject-styles.ts");
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const distDir = resolve(currentDir, "../dist");
+const injectFile = resolve(currentDir, "../src/tokens/inject-styles.ts");
 
 function toKebab(input: string): string {
   return input
@@ -24,9 +24,7 @@ function flattenTokens(
   for (const [key, value] of Object.entries(obj)) {
     const nextPrefix = [...prefix, toKebab(key)];
     if (value !== null && typeof value === "object") {
-      entries.push(
-        ...flattenTokens(value as Record<string, unknown>, nextPrefix),
-      );
+      entries.push(...flattenTokens(value as Record<string, unknown>, nextPrefix));
     } else if (typeof value === "string" || typeof value === "number") {
       entries.push([`--uime-${nextPrefix.join("-")}`, String(value)]);
     }
@@ -40,18 +38,10 @@ function formatBlock(selector: string, vars: Array<[string, string]>): string {
 }
 
 function generateTokensCss(): string {
-  const primitiveVars = flattenTokens(
-    primitives as unknown as Record<string, unknown>,
-  );
-  const darkSemanticVars = flattenTokens(
-    semantic.dark as unknown as Record<string, unknown>,
-  );
-  const lightSemanticVars = flattenTokens(
-    semantic.light as unknown as Record<string, unknown>,
-  );
-  const componentVars = flattenTokens(
-    components as unknown as Record<string, unknown>,
-  );
+  const primitiveVars = flattenTokens(primitives as unknown as Record<string, unknown>);
+  const darkSemanticVars = flattenTokens(semantic.dark as unknown as Record<string, unknown>);
+  const lightSemanticVars = flattenTokens(semantic.light as unknown as Record<string, unknown>);
+  const componentVars = flattenTokens(components as unknown as Record<string, unknown>);
 
   const header = [
     "/**",
