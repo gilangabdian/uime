@@ -4,6 +4,8 @@
   "private": true,
   "description": "",
   "scripts": {
+    "storybook": "pnpm --filter @uime/storybook dev",
+    "build-storybook": "pnpm --filter @uime/storybook build",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
